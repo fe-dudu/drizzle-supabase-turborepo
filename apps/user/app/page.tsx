@@ -1,5 +1,6 @@
-import { Test } from '@/components/test';
+import { PATH } from '@/constants/path';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <Test />;
+  redirect(PATH.SIGN_IN);
 }

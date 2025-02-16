@@ -1,0 +1,18 @@
+{
+  "name": "@dst/supabase",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./createClient": "./src/client.ts",
+    "./createServerClient": "./src/server.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "next": "catalog:"
+  },
+  "devDependencies": {
+    "@dst/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

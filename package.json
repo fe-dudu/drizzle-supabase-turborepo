@@ -4,6 +4,9 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:admin": "turbo dev --filter=admin",
+    "dev:business": "turbo dev --filter=business",
+    "dev:user": "turbo dev --filter=user",
     "format": "biome check --write --unsafe",
     "lint": "biome check",
     "postinstall": "packlint sort -R && pnpm format",

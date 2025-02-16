@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@dst/db": "workspace:*",
+    "@dst/supabase": "workspace:*",
+    "@dst/tanstack-query": "workspace:*",
+    "@supabase/auth-js": "catalog:",
+    "@supabase/ssr": "catalog:",
+    "@tanstack/react-query": "catalog:",
     "drizzle-orm": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
