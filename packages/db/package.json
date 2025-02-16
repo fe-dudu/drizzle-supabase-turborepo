@@ -1,0 +1,21 @@
+{
+  "name": "@dst/db",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "db:gen": "drizzle-kit generate",
+    "db:mig": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "catalog:",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@dst/typescript-config": "workspace:*",
+    "drizzle-kit": "^0.30.4",
+    "typescript": "catalog:"
+  }
+}

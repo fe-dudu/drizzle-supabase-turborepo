@@ -1,0 +1,25 @@
+{
+  "name": "user",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "dotenv -e ../../.env -- next dev --turbopack --port 3000",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@dst/db": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@dst/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:"
+  }
+}
