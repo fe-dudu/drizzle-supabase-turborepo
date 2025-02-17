@@ -1,24 +1,36 @@
 import { db, postTable, userTable } from '@dst/db';
-import { eq, or, sql } from 'drizzle-orm';
+import { eq, isNull, or, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
+    const sq = db
+      .select({
+        id: postTable.id,
+        content: postTable.content,
+        senderId: postTable.senderId,
+        receiverId: postTable.receiverId,
+      })
+      .from(postTable)
+      .where(isNull(postTable.deletedAt))
+      .as('sq');
+
     const usersWithPosts = await db
       .select({
         userId: userTable.id,
         userNickname: userTable.nickname,
         posts: sql<string>`json_agg(json_build_object(
-          'id', ${postTable.id},
-          'content', ${postTable.content},
+          'id', ${sq.id},
+          'content', ${sq.content},
           'type', CASE 
-            WHEN ${postTable.senderId} = ${userTable.id} THEN 'sent'
-            WHEN ${postTable.receiverId} = ${userTable.id} THEN 'received'
+            WHEN ${sq.senderId} = ${userTable.id} THEN 'sent'
+            WHEN ${sq.receiverId} = ${userTable.id} THEN 'received'
           END
         ))`.as('posts'),
       })
       .from(userTable)
-      .leftJoin(postTable, or(eq(postTable.senderId, userTable.id), eq(postTable.receiverId, userTable.id)))
+      .leftJoin(sq, or(eq(sq.senderId, userTable.id), eq(sq.receiverId, userTable.id)))
+      .where(isNull(userTable.deletedAt))
       .groupBy(userTable.id);
 
     return NextResponse.json({ data: usersWithPosts });
