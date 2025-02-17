@@ -15,3 +15,4 @@ All infrastructure is covered for $45/month and You can start with the free plan
 - [supabase docs | auth-nextjs](https://supabase.com/docs/guides/auth/server-side/nextjs)
 - [nextjs exmaple | with-supabase](https://github.com/vercel/next.js/tree/canary/examples/with-supabase)
 - [drizzle docs](https://orm.drizzle.team/docs/overview)
+- [kakao developer](https://developers.kakao.com)
