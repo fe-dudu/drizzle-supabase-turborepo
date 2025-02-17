@@ -3,8 +3,8 @@ import { QUERY_KEYS } from '@/constants/queryKeys';
 import createClient from '@dst/supabase/createClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const currentUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+const CALLBACK_URL = process.env.NEXT_PUBLIC_CALLBACK_URL
+  ? process.env.NEXT_PUBLIC_CALLBACK_URL
   : 'http://localhost:3000';
 
 export default function useSignIn() {
@@ -13,11 +13,10 @@ export default function useSignIn() {
 
   return useMutation({
     mutationFn: async () => {
-      alert(`${currentUrl}/api/auth/callback?redirect=${PATH.PROTECTED}`);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
-          redirectTo: `${currentUrl}/api/auth/callback?redirect=${PATH.PROTECTED}`,
+          redirectTo: `${CALLBACK_URL}/api/auth/callback?redirect=${PATH.PROTECTED}`,
         },
       });
 
