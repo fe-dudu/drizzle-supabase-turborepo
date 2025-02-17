@@ -13,6 +13,7 @@ export default function useSignIn() {
 
   return useMutation({
     mutationFn: async () => {
+      alert(`${currentUrl}/api/auth/callback?redirect=${PATH.PROTECTED}`);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
