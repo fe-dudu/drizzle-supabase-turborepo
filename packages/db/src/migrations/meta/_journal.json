@@ -15,6 +15,13 @@
       "when": 1739796685861,
       "tag": "0001_slow_stark_industries",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1739802735925,
+      "tag": "0002_marvelous_black_knight",
+      "breakpoints": true
     }
   ]
 }

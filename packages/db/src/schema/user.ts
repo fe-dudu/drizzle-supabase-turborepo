@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { index, integer, pgEnum, pgTable, timestamp, uniqueIndex, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgEnum, pgTable, timestamp, uniqueIndex, varchar } from 'drizzle-orm/pg-core';
 import { lower } from '../utils/lower';
 import { postTable } from './post';
 import { tenantTable } from './tenant';
@@ -20,8 +20,10 @@ export const userTable = pgTable(
     role: userRole().default('customer').notNull(),
     fcmToken: varchar({ length: 255 }),
   },
-  (table) => [index('user_tenantId_idx').on(table.tenantId), uniqueIndex('user_email_idx').on(lower(table.email))],
+  () => [userEmailIndex],
 );
+
+const userEmailIndex = uniqueIndex('user_email_idx').on(lower(userTable.email));
 
 export const userRelations = relations(userTable, ({ one, many }) => ({
   tenant: one(tenantTable, {
