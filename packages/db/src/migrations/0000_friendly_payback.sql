@@ -30,3 +30,8 @@ CREATE TABLE "user" (
 	"fcmToken" varchar(255),
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
+--> statement-breakpoint
+CREATE INDEX "post_senderId_idx" ON "post" USING btree ("senderId");--> statement-breakpoint
+CREATE INDEX "post_receiverId_idx" ON "post" USING btree ("receiverId");--> statement-breakpoint
+CREATE INDEX "user_tenantId_idx" ON "user" USING btree ("tenantId");--> statement-breakpoint
+CREATE UNIQUE INDEX "user_email_idx" ON "user" USING btree (lower("email"));

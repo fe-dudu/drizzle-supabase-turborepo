@@ -1,5 +1,5 @@
 {
-  "id": "6afead29-33c4-4135-becb-686cb33f9a3b",
+  "id": "b5c9326c-02b9-4094-9c20-9bff902137ee",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -70,7 +70,38 @@
           "default": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "post_senderId_idx": {
+          "name": "post_senderId_idx",
+          "columns": [
+            {
+              "expression": "senderId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "post_receiverId_idx": {
+          "name": "post_receiverId_idx",
+          "columns": [
+            {
+              "expression": "receiverId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -126,7 +157,9 @@
         "tenant_name_unique": {
           "name": "tenant_name_unique",
           "nullsNotDistinct": false,
-          "columns": ["name"]
+          "columns": [
+            "name"
+          ]
         }
       },
       "policies": {},
@@ -205,14 +238,47 @@
           "notNull": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "user_tenantId_idx": {
+          "name": "user_tenantId_idx",
+          "columns": [
+            {
+              "expression": "tenantId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "user_email_idx": {
+          "name": "user_email_idx",
+          "columns": [
+            {
+              "expression": "lower(\"email\")",
+              "asc": true,
+              "isExpression": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       },
       "policies": {},
@@ -224,7 +290,11 @@
     "public.user_role": {
       "name": "user_role",
       "schema": "public",
-      "values": ["admin", "tenant", "customer"]
+      "values": [
+        "admin",
+        "tenant",
+        "customer"
+      ]
     }
   },
   "schemas": {},

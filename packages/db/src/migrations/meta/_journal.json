@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1739703514794,
-      "tag": "0000_chunky_celestials",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1739755385074,
-      "tag": "0001_magenta_maria_hill",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1739791255385,
-      "tag": "0002_flowery_piledriver",
+      "when": 1739792866325,
+      "tag": "0000_friendly_payback",
       "breakpoints": true
     }
   ]

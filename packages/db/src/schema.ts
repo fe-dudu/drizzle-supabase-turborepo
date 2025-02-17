@@ -28,7 +28,7 @@ export const userTable = pgTable(
     role: userRole().notNull(),
     fcmToken: varchar({ length: 255 }),
   },
-  (table) => [index('user_tenantId_idx').on(table.tenantId), uniqueIndex('emailUniqueIndex').on(lower(table.email))],
+  (table) => [index('user_tenantId_idx').on(table.tenantId), uniqueIndex('user_email_idx').on(lower(table.email))],
 );
 
 export const userRelations = relations(userTable, ({ one, many }) => ({
