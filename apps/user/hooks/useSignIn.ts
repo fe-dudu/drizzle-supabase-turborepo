@@ -1,7 +1,11 @@
-import { PATH, currentUrl } from '@/constants/path';
+import { PATH } from '@/constants/path';
 import { QUERY_KEYS } from '@/constants/queryKeys';
 import createClient from '@dst/supabase/createClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+const currentUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3000';
 
 export default function useSignIn() {
   const supabase = createClient();
@@ -12,7 +16,7 @@ export default function useSignIn() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
-          redirectTo: `${currentUrl}/auth/callback?redirect=${PATH.PROTECTED}`,
+          redirectTo: `${currentUrl}/api/auth/callback?redirect=${PATH.PROTECTED}`,
         },
       });
 
