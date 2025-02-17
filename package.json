@@ -7,6 +7,8 @@
     "dev:admin": "turbo dev --filter=admin",
     "dev:business": "turbo dev --filter=business",
     "dev:user": "turbo dev --filter=user",
+    "db:gen": "turbo db:gen --filter=@dst/db",
+    "db:mig": "turbo db:mig --filter=@dst/db",
     "format": "biome check --write --unsafe",
     "lint": "biome check",
     "postinstall": "packlint sort -R && pnpm format",

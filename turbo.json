@@ -10,6 +10,14 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "db:gen": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:mig": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

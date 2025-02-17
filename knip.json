@@ -3,6 +3,9 @@
   "workspaces": {
     ".": {
       "ignore": ["packlint.config.mjs"]
+    },
+    "packages/db": {
+      "entry": ["src/schema/*.ts"]
     }
   },
   "ignoreDependencies": ["dotenv", "next"],
