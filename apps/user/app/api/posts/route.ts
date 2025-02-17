@@ -1,9 +1,19 @@
 import { db, postTable, userTable } from '@dst/db';
+import createClient from '@dst/supabase/createServerClient';
 import { aliasedTable, eq, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
+    const supabase = await createClient();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json({ message: 'Not authenticated' }, { status: 401 });
+    }
+
     const sender = aliasedTable(userTable, 'sender');
     const receiver = aliasedTable(userTable, 'receiver');
 
