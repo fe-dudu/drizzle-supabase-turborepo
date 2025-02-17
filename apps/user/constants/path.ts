@@ -4,5 +4,6 @@ export const currentUrl = process.env.NEXT_PUBLIC_VERCEL_URL
 
 export const PATH = {
   SIGN_IN: '/sign-in',
+  AUTH_CALLBACK: '/auth/callback',
   PROTECTED: '/protected',
 } as const;

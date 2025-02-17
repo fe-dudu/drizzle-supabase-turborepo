@@ -2,7 +2,6 @@ import { createServerClient } from '@supabase/ssr';
 import { type NextRequest, NextResponse } from 'next/server';
 import { PATH } from './constants/path';
 
-const PUBLIC_ROUTES = [PATH.SIGN_IN] as const;
 const PROTECTED_ROUTES = [PATH.PROTECTED] as const;
 
 export async function middleware(req: NextRequest) {
@@ -33,20 +32,20 @@ export async function middleware(req: NextRequest) {
   );
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  if (!user) {
-    if (PROTECTED_ROUTES.some((route) => url.pathname.startsWith(route))) {
-      url.pathname = PATH.SIGN_IN;
+  if (session) {
+    if (url.pathname.startsWith(PATH.SIGN_IN)) {
+      url.pathname = PATH.PROTECTED;
       url.search = '';
       return NextResponse.redirect(url);
     }
   }
 
-  if (user) {
-    if (PUBLIC_ROUTES.some((route) => url.pathname.startsWith(route))) {
-      url.pathname = PATH.PROTECTED;
+  if (!session) {
+    if (PROTECTED_ROUTES.some((route) => url.pathname.startsWith(route))) {
+      url.pathname = PATH.SIGN_IN;
       url.search = '';
       return NextResponse.redirect(url);
     }
