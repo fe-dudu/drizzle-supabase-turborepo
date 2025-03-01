@@ -35,20 +35,16 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (session) {
-    if (url.pathname.startsWith(PATH.SIGN_IN)) {
-      url.pathname = PATH.PROTECTED;
-      url.search = '';
-      return NextResponse.redirect(url);
-    }
+  if (session && url.pathname.startsWith(PATH.SIGN_IN)) {
+    url.pathname = PATH.PROTECTED;
+    url.search = '';
+    return NextResponse.redirect(url);
   }
 
-  if (!session) {
-    if (PROTECTED_ROUTES.some((route) => url.pathname.startsWith(route))) {
-      url.pathname = PATH.SIGN_IN;
-      url.search = '';
-      return NextResponse.redirect(url);
-    }
+  if (!session && PROTECTED_ROUTES.some((route) => url.pathname.startsWith(route))) {
+    url.pathname = PATH.SIGN_IN;
+    url.search = '';
+    return NextResponse.redirect(url);
   }
 
   return response;
@@ -64,6 +60,8 @@ export const config = {
      * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
      * - /api (API routes)
      */
+
+    // biome-ignore lint/nursery/noSecrets: <explanation>
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)|api/).*)',
   ],
 };

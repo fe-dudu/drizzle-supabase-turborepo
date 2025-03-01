@@ -23,8 +23,7 @@ export async function GET() {
       .where(isNull(tenantTable.deletedAt));
 
     return NextResponse.json({ data: tenantsWithUsers });
-  } catch (err) {
-    console.error(err);
+  } catch (_err) {
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

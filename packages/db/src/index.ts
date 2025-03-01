@@ -8,4 +8,4 @@ export { postTable } from './schema/post';
 export { tenantTable } from './schema/tenant';
 export { userRole, userTable } from './schema/user';
 export { lower } from './utils/lower';
-export const db = drizzle({ client });
+export const db = drizzle({ client, logger: true });

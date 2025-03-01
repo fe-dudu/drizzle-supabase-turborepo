@@ -163,9 +163,7 @@
         "tenant_name_unique": {
           "name": "tenant_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         }
       },
       "policies": {},
@@ -289,9 +287,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -303,11 +299,7 @@
     "public.user_role": {
       "name": "user_role",
       "schema": "public",
-      "values": [
-        "admin",
-        "tenant",
-        "customer"
-      ]
+      "values": ["admin", "tenant", "customer"]
     }
   },
   "schemas": {},

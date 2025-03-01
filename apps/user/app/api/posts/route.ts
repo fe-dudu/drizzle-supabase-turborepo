@@ -43,8 +43,7 @@ export async function GET() {
       .where(isNull(postTable.deletedAt));
 
     return NextResponse.json({ data: usersWithPosts });
-  } catch (err) {
-    console.error(err);
+  } catch (_err) {
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

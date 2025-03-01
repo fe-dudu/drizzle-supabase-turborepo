@@ -34,8 +34,7 @@ export async function GET() {
       .groupBy(userTable.id);
 
     return NextResponse.json({ data: usersWithPosts });
-  } catch (err) {
-    console.error(err);
+  } catch (_err) {
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

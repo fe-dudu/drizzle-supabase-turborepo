@@ -1,14 +1,26 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": [".next", "**/node_modules", "tsconfig.json"]
+    "ignore": [".next", "**/node_modules", "tsconfig.json", "next-env.d.ts"]
+  },
+  "organizeImports": {
+    "enabled": true
   },
   "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 120
+    "lineWidth": 120,
+    "indentStyle": "space",
+    "enabled": true,
+    "bracketSpacing": true,
+    "formatWithErrors": false
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "bracketSameLine": false
+    }
   },
   "linter": {
     "enabled": true,
@@ -18,38 +30,87 @@
         "useButtonType": "off"
       },
       "complexity": {
-        "noBannedTypes": "error"
+        "noVoid": "error",
+        "noBannedTypes": "error",
+        "noExtraBooleanCast": "error",
+        "useSimplifiedLogicExpression": "error",
+        "noExcessiveCognitiveComplexity": "error"
       },
       "correctness": {
-        "noUnusedVariables": "error"
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "useArrayLiterals": "error",
+        "useHookAtTopLevel": "error"
+      },
+      "nursery": {
+        "useAtIndex": "error",
+        "useGuardForIn": "error",
+        "useCollapsedIf": "error",
+        "useConsistentCurlyBraces": "error",
+        "noSubstr": "error",
+        "noSecrets": "error",
+        "noCommonJs": "error",
+        "noNestedTernary": "error",
+        "noDocumentCookie": "error",
+        "noExportedImports": "error",
+        "noUnknownPseudoClass": "error",
+        "noUnknownTypeSelector": "error",
+        "noUnknownPseudoElement": "error",
+        "noIrregularWhitespace": "error",
+        "noUselessEscapeInRegex": "error",
+        "noTemplateCurlyInString": "error",
+        "noDescendingSpecificity": "error",
+        "noDuplicateElseIf": "error",
+        "noDuplicateCustomProperties": "error",
+        "noDuplicateProperties": "error",
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "lodash": "util 패키지에 필요한 함수를 생성하세요."
+            }
+          }
+        }
       },
       "performance": {
         "noBarrelFile": "error",
         "noReExportAll": "error",
         "noDelete": "error"
       },
+      "security": {
+        "noDangerouslySetInnerHtml": "error"
+      },
       "style": {
+        "noUselessElse": "error",
+        "useCollapsedElseIf": "error",
         "noNonNullAssertion": "error",
-        "useShorthandArrayType": "error"
+        "useShorthandArrayType": "error",
+        "useBlockStatements": "error",
+        "noNamespace": "error",
+        "noYodaExpression": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useDefaultSwitchClause": "error",
+        "useFragmentSyntax": "error",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "error",
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["camelCase", "PascalCase"]
+          }
+        }
       },
       "suspicious": {
         "noArrayIndexKey": "error",
         "noAssignInExpressions": "error",
         "noConfusingVoidType": "error",
-        "noConsoleLog": "error",
+        "noConsole": "error",
+        "noDebugger": "error",
         "noExplicitAny": "error",
-        "noRedeclare": "error"
+        "noRedeclare": "error",
+        "noEvolvingTypes": "error",
+        "useNumberToFixedDigitsArgument": "error"
       }
     }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "trailingCommas": "all",
-      "semicolons": "always"
-    }
-  },
-  "organizeImports": {
-    "enabled": true
   }
 }
